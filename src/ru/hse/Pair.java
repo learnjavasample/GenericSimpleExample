@@ -1,5 +1,6 @@
 package ru.hse;
 
+import java.util.Objects;
 
 public class Pair <T, V> {
 
@@ -28,6 +29,25 @@ public class Pair <T, V> {
 
     public V getSecond() {
         return second;
+    }
+
+    @Override
+    public boolean equals (Object other) {
+        if (this == other)
+            return true;
+
+        if (other == null || getClass() != other.getClass())
+            return false;
+
+        Pair<?, ?> otherPair = (Pair<?, ?>) other;
+        return
+                Objects.equals(this.first, otherPair.first) &&
+                        Objects.equals(this.second, otherPair.second);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(first, second);
     }
 
 
